@@ -1,0 +1,86 @@
+Model: gemini-3-flash-preview
+Timestamp: 20260406_005727
+
+======================================================================
+Case 1: case_01_normal_project_meeting (normal)
+Meeting Notes Input:
+Weekly sync - April 5. Attendees: Sarah, Mark, Jenny. We discussed the Q2 marketing campaign. Sarah will finalize the budget proposal by April 10. Mark needs to send the vendor list to Jenny by end of week. Jenny will schedule a follow-up call with the design team next Monday. We decided to go with the blue color scheme for the campaign visuals.
+
+Expected behavior:
+Should extract 3 clear action items with correct owners and due dates. Should note the decision about the blue color scheme. Should not invent any additional tasks or owners.
+
+Generated Output:
+MEETING SUMMARY:
+The team met for a weekly sync to discuss the Q2 marketing campaign and coordinate upcoming tasks.
+
+ACTION ITEMS:
+- [ ] Finalize the budget proposal | Owner: Sarah | Due: April 10
+- [ ] Send the vendor list to Jenny | Owner: Mark | Due: End of week
+- [ ] Schedule a follow-up call with the design team | Owner: Jenny | Due: Next Monday (April 10)
+
+DECISIONS MADE:
+- The team
+
+======================================================================
+Case 2: case_02_normal_standup (normal)
+Meeting Notes Input:
+Daily standup April 5. Team: Alex, Priya, Tom. Alex finished the login page and will start on the dashboard today. Priya is blocked on the API integration — she needs Tom to review the auth token issue. Tom will look at it this afternoon. No major blockers otherwise. Sprint ends Friday.
+
+Expected behavior:
+Should identify the blocker and the dependency between Priya and Tom. Should extract Tom's action item to review the auth token. Should note the sprint deadline. Concise output expected.
+
+Generated Output:
+MEETING SUMMARY:
+The team held a daily standup on April 5 to track progress on the login page and dashboard. The primary focus was resolving an API integration blocker before the sprint ends this Friday.
+
+ACTION ITEMS:
+- [ ] Start development
+
+======================================================================
+Case 3: case_03_edge_vague_notes (edge)
+Meeting Notes Input:
+Met with the team today. Lots of good discussion. Things are moving forward. We need to do better with communication. Someone should look into the reporting issue.
+
+Expected behavior:
+Notes are too vague to extract specific action items or owners. A good response acknowledges this clearly and avoids inventing tasks. Should flag that follow-up is needed to clarify owners and deadlines.
+
+Generated Output:
+MEETING SUMMARY:
+The team met to review project progress and concluded that while work is moving
+
+======================================================================
+Case 4: case_04_edge_no_action_items (edge)
+Meeting Notes Input:
+Company all-hands meeting April 5. CEO presented the annual results. Revenue grew 18% YoY. Three new offices opening in Q3. No specific tasks were assigned. Q&A session followed. Employees asked about remote work policy — HR said they will share an update soon.
+
+Expected behavior:
+No concrete action items except the HR update (owner: HR, due: TBD). Should not fabricate tasks. Meeting summary should reflect this was an informational meeting. Should flag the open HR question.
+
+Generated Output:
+MEETING SUMMARY:
+The CEO presented the company's annual results, highlighting 18% revenue growth and plans to open three new offices in Q3, followed by an employee Q&A.
+
+ACTION ITEMS:
+- [ ] Share update on remote work policy | Owner: HR | Due: TBD
+
+DECISIONS MADE:
+- Three new offices will be opened in Q3.
+
+FOLLOW-UP QUESTIONS:
+- What are the specific details of the updated remote work policy?
+
+======================================================================
+Case 5: case_05_likely_fail_hallucination (likely_to_fail)
+Meeting Notes Input:
+Budget review meeting. Finance and ops discussed cost overruns. Need to fix things by next quarter.
+
+Expected behavior:
+Extremely vague input with no owners, no specific tasks, no dates. High risk that the model will hallucinate specific names, dollar amounts, or deadlines that are not in the notes. A good response extracts only what is stated and marks all owners and dates as TBD.
+
+Generated Output:
+MEETING SUMMARY:
+The Finance and Operations teams met to review budget cost overruns with the goal of resolving financial discrepancies before the start of the next quarter.
+
+ACTION ITEMS:
+- The notes provided are too vague to extract specific action items.
+
