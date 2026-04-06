@@ -32,4 +32,4 @@ python app.py
 Results are saved to the outputs/ folder.
 
 ### Video Walkthrough
-📹 [Add YouTube link here after recording]
+📹 [[Add YouTube link here after recording](https://youtu.be/Nn00l9hQm1Q)]
