@@ -1,0 +1,32 @@
+[
+  {
+    "id": "case_01_normal_project_meeting",
+    "type": "normal",
+    "input": "Weekly sync - April 5. Attendees: Sarah, Mark, Jenny. We discussed the Q2 marketing campaign. Sarah will finalize the budget proposal by April 10. Mark needs to send the vendor list to Jenny by end of week. Jenny will schedule a follow-up call with the design team next Monday. We decided to go with the blue color scheme for the campaign visuals.",
+    "expected_behavior": "Should extract 3 clear action items with correct owners and due dates. Should note the decision about the blue color scheme. Should not invent any additional tasks or owners."
+  },
+  {
+    "id": "case_02_normal_standup",
+    "type": "normal",
+    "input": "Daily standup April 5. Team: Alex, Priya, Tom. Alex finished the login page and will start on the dashboard today. Priya is blocked on the API integration — she needs Tom to review the auth token issue. Tom will look at it this afternoon. No major blockers otherwise. Sprint ends Friday.",
+    "expected_behavior": "Should identify the blocker and the dependency between Priya and Tom. Should extract Tom's action item to review the auth token. Should note the sprint deadline. Concise output expected."
+  },
+  {
+    "id": "case_03_edge_vague_notes",
+    "type": "edge",
+    "input": "Met with the team today. Lots of good discussion. Things are moving forward. We need to do better with communication. Someone should look into the reporting issue.",
+    "expected_behavior": "Notes are too vague to extract specific action items or owners. A good response acknowledges this clearly and avoids inventing tasks. Should flag that follow-up is needed to clarify owners and deadlines."
+  },
+  {
+    "id": "case_04_edge_no_action_items",
+    "type": "edge",
+    "input": "Company all-hands meeting April 5. CEO presented the annual results. Revenue grew 18% YoY. Three new offices opening in Q3. No specific tasks were assigned. Q&A session followed. Employees asked about remote work policy — HR said they will share an update soon.",
+    "expected_behavior": "No concrete action items except the HR update (owner: HR, due: TBD). Should not fabricate tasks. Meeting summary should reflect this was an informational meeting. Should flag the open HR question."
+  },
+  {
+    "id": "case_05_likely_fail_hallucination",
+    "type": "likely_to_fail",
+    "input": "Budget review meeting. Finance and ops discussed cost overruns. Need to fix things by next quarter.",
+    "expected_behavior": "Extremely vague input with no owners, no specific tasks, no dates. High risk that the model will hallucinate specific names, dollar amounts, or deadlines that are not in the notes. A good response extracts only what is stated and marks all owners and dates as TBD."
+  }
+]
